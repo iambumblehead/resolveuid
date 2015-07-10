@@ -9,9 +9,9 @@ console.log(resolveuid('./src/resolveuid.js'));  // resolveuid-0.0.1/src/resolve
 console.log(resolveuid('../src/resolveuid.js')); // /home/bumblehead/src/resolveuid.js
 ```
 
-If an npm package.json is found, id is returned in the form _:packagename-:packageversion/rel/path/file.js_, otherwise a full file path relative to the process is returned instead.
+If an npm package.json is found, id is returned in the form _:packagename-:packageversion/rel/path/file.js_, otherwise a full file path relative to the process is returned.
 
-Because relative paths will associate with the process using a full path is recommended.
+Passing full paths to resolveuid is recommended since relative paths will associate with the running process path.
 
 
 [0]: http://www.bumblehead.com                            "bumblehead"
