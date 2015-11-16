@@ -18,7 +18,7 @@ var resolveuid = module.exports = (function (o) {
 
     if (pkgpath) {
       pkg = o.dirgetpackage(pkgpath);
-      uidpath = pkg.name + '-' + pkg.version +  uidpath.replace(pkgpath, '');
+      uidpath = pkg.name + '-' + pkg.version + ':~' + uidpath.replace(pkgpath, '');
     }
 
     return uidpath;

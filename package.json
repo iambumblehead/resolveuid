@@ -1,6 +1,6 @@
 {
   "name": "resolveuid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license" : "MIT",
   "readmeFilename": "README.md",
   "description": "given a filepath return a unique id with serialised info from any package.json file is discovered on the path",

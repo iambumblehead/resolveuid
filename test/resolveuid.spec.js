@@ -9,7 +9,7 @@ describe("resolveuid", function () {
     expect(
       resolveuid('./src/resolveuid')
     ).toBe(
-      'resolveuid-0.0.1/src/resolveuid'
+      'resolveuid-0.0.1:~/src/resolveuid'
     );
   });
 
@@ -18,6 +18,14 @@ describe("resolveuid", function () {
       resolveuid('../src/resolveuid')
     ).toBe(
       resolveuid.getasfullpath('../src/resolveuid')
+    );
+  });
+
+  it("should return a uid for a host path that associates with a package.json", function () {    
+    expect(
+      resolveuid('path')
+    ).toBe(
+      'resolveuid-0.0.1:~/path'
     );
   });
 });

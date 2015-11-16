@@ -5,11 +5,10 @@ resolveuid
 Given the full path of a file, constructs an id specific to the file and its npm package. If the same package version is installed to multiple locations, a filepath found in that package will result in the same uid for all locations.
 
 ```javascript
-console.log(resolveuid('./src/resolveuid.js'));  // resolveuid-0.0.1/src/resolveuid.js
-console.log(resolveuid('../src/resolveuid.js')); // /home/bumblehead/src/resolveuid.js
+console.log(resolveuid('./src/resolveuid.js'));  // resolveuid-0.0.1:~/src/resolveuid.js
 ```
 
-If an npm package.json is found, id is returned in the form _:packagename-:packageversion/rel/path/file.js_, otherwise a full path relative to the process is returned.
+If an npm package.json is found, id is returned in the form _:packagename-:packageversion:~/rel/path/file.js_, otherwise a full path relative to the process is returned.
 
 Passing full paths to resolveuid is recommended since relative paths will associate with the running process path.
 
