@@ -1,0 +1,6 @@
+{
+  "name" : "test_bowermodule",
+  "version" : "0.0.1",
+  "main" : "build/test_bowermodule.js",
+  "description" : "test bowermodule and browser property"
+}

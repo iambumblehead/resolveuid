@@ -1,5 +1,5 @@
 // Filename: resolveuid.js  
-// Timestamp: 2015.07.09-16:41:18 (last modified)
+// Timestamp: 2015.12.15-08:17:50 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 
 var fs = require('fs'),
@@ -17,7 +17,10 @@ var resolveuid = module.exports = (function (o) {
         pkgpath = o.getpackagepath(path.dirname(uidpath));
 
     if (pkgpath) {
-      pkg = o.dirgetpackage(pkgpath);
+      pkg = o.dirispackage(pkgpath) ?
+        o.dirgetpackage(pkgpath):
+        o.dirgetbower(pkgpath);
+
       uidpath = pkg.name + '-' + pkg.version + ':~' + uidpath.replace(pkgpath, '');
     }
 
@@ -35,6 +38,18 @@ var resolveuid = module.exports = (function (o) {
   o.dirispackage = function (dirpath) {
     return fs.existsSync(o.dirgetpackagepath(dirpath));
   };
+
+  o.dirgetbowerpath = function (dirpath) {
+    return path.join(dirpath, 'bower.json');
+  };
+
+  o.dirgetbower = function (dirpath) {
+    return require(o.dirgetbowerpath(dirpath));
+  };
+  
+  o.dirisbower = function (dirpath) {
+    return fs.existsSync(o.dirgetbowerpath(dirpath));
+  };  
   
   o.getpackagepath = function (dirpath) {
     var packagepath = null;
@@ -42,6 +57,8 @@ var resolveuid = module.exports = (function (o) {
     if (dirpath) {
       if (o.dirispackage(dirpath)) {
         packagepath = dirpath;
+      } else if (o.dirisbower(dirpath)) {
+        packagepath = dirpath;        
       } else if (path.dirname(dirpath) !== dirpath) {
         packagepath = o.getpackagepath(path.dirname(dirpath));
       }
